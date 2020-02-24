@@ -1,0 +1,21 @@
+<form class="example-form" [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field>
+    <mat-label>e-mail</mat-label>
+    <input matInput formControlName="email" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>password</mat-label>
+    <input matInput formControlName="password" [type]="hide ? 'password': 'text'" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-raised-button type="submit" [disabled]="form.invalid">Submit</button>
+  <mat-error>{{checkErrors()}}</mat-error>
+</form>
+<div *ngIf="flag">
+  <app-post-form
+    *ngFor="let i of array"
+    [array]="i"
+  ></app-post-form>
+</div>
